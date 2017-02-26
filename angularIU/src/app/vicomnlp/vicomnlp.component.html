@@ -1,0 +1,38 @@
+
+<!--<span class="label label-success">Que quieres hacer?</span>
+<input style="width: 400px;" #box (keyup)="getEvents(box.value)" >
+<br/>
+<div [innerHTML]="entrada" #myDiv></div>
+<br/>
+-->
+<!--<input style="width:70%" class="form-control" #search (keyup)="currentSearchSubject.next(search.value)" />-->
+<input style="width:70%" class="form-control" #search (keyup)="funcionAuxiliar(search.value)" />
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let matchingEvent of searchResult">
+      <div *ngIf="matchingEvent.loc">LUGAR:{{matchingEvent.loc}}</div>
+      <div *ngIf="matchingEvent.vicomdate">FECHA:{{matchingEvent.vicomdate}}</div>
+      <div *ngIf="matchingEvent.eventvicom">EVENTO:{{matchingEvent.eventvicom}}</div>
+    </li>
+    <h2 *ngIf="searchResult2.length>0">Eventos programados</h2>
+      <li class="list-group-item" *ngFor="let matchingEvent2 of searchResult2">
+        <div>{{matchingEvent2.municipality}}:{{matchingEvent2.eventType}}:{{matchingEvent2.startDate}}</div>
+      </li>
+
+
+  </ul>
+
+
+
+<!--
+<span class="label label-success">Que quieres hacer?</span>
+<input style="width: 400px;" #box2 (keyup)="getAnalysis(box2.value)" >
+<br/>
+{{output_post| json}}
+{{output_post}}
+<div *ngIf="output_post">Fecha: {{output_post[0].vicomdate}}</div>
+<div *ngIf="output_post">Lugar: {{output_post[0].loc}}</div>
+<div *ngIf="output_post">Evento: {{output_post[0].eventvicom}}</div>
+
+<div *ngIf="output_get && output_get.length>0">{{output_get[0].municipality}},{{output_get[0].longitude}}, {{output_get[0].latitude}}</div>
+{{output_get| json}}
+-->

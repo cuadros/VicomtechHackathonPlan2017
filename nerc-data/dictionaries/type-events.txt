@@ -1,0 +1,15 @@
+concierto	EVENTvicom
+proyección	EVENTvicom
+teatro	EVENTvicom
+actividad	EVENTvicom
+conferencia	EVENTvicom
+festival	EVENTvicom
+exposición	EVENTvicom
+otros	EVENTvicom
+curso-taller	EVENTvicom
+danza	EVENTvicom
+concurso	EVENTvicom
+bertsolarismo	EVENTvicom
+presentación	EVENTvicom
+jornada	EVENTvicom
+feria	EVENTvicom

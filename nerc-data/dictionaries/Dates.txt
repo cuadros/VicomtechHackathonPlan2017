@@ -1,0 +1,22 @@
+pasado mañana	VICOMdate
+la semana que viene	VICOMdate
+el mes que viene	VICOMdate
+el año que viene	VICOMdate
+el próximo mes	VICOMdate
+en dos días	VICOMdate
+del 15 al 2 	VICOMdate
+dias que sean martes y 13 en los siguientes 10 years	VICOMdate
+dos semanas a partir de abril	VICOMdate
+el 27 del siguiente mes	VICOMdate
+el 27, 28 y 29 del siguiente mes	VICOMdate
+el lunes que viene	VICOMdate
+el mes que viene	VICOMdate
+hoy	VICOMdate
+junio o agosto	VICOMdate
+los lunes siguiente mes	VICOMdate
+los tres siguientes dias despues de junio	VICOMdate
+los tres siguientes meses despues de junio	VICOMdate
+mañana	VICOMdate
+pasado manana	VICOMdate
+siguiente mes	VICOMdate
+verano 	VICOMdate
