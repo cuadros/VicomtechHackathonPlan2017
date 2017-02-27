@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {VicomnlpService} from '../vicomnlpservice.service'
 import {Event} from '../model/event'
 import {Nerc} from '../model/nerc'
+import {Fechas} from '../model/fechas'
+import {Pipe, PipeTransform} from "@angular/core";
+
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -35,13 +38,22 @@ export class VicomnlpComponent implements OnInit {
   // Esta es la variable que recogerá los resultados de los Observables
   private searchResult2: Event[] = [];
 
+  private currentSearchSubject3 = new Subject<string>();
+  // Esta es la variable que recogerá el resultado Observable del servicio (lista de eventos en este caso de ejemplo)
+  private resultObservable3: Observable<Fechas>;
+  // Esta es la variable que recogerá los resultados de los Observables
+  private searchResult3:Fechas ;
+
   output_get:Event[];
   output_post:Nerc[];
   busqueda:Nerc[];
   evento:string;
   sitio:string;
   output_time:string;
-  fecha:string;
+  output_time2:Fechas;
+fecha:string;
+
+
   constructor(private vicomnlpservice: VicomnlpService) {
 
 
@@ -50,20 +62,19 @@ export class VicomnlpComponent implements OnInit {
 
   funcionAuxiliar (resultatBusqueda:string){
     this.currentSearchSubject.next(resultatBusqueda);
-  //  this.convertirFecha("hoy");
+
     let entradaBuscador:Nerc;
     for (let entry of this.searchResult) {
       entradaBuscador=entry;
       this.currentSearchSubject2.next(entradaBuscador)
+      if (entradaBuscador.vicomdate){
+        this.output_time="encontrada fecha"
+        this.currentSearchSubject3.next(entradaBuscador.vicomdate)
+        this.output_time2=this.searchResult3;
+
 
       }
-  }
-
-
-  convertirFecha(fecha:string){
-    let output_time:string;
-    this.vicomnlpservice.findDate(fecha).subscribe(x=>this.output_time=x);
-
+      }
   }
 
 
@@ -90,7 +101,7 @@ export class VicomnlpComponent implements OnInit {
       // le puedo pasar 3 parametros aqui??? cAAAH
       .switchMap(text => text   // switch to new observable each time
         // return the http search observable
-        ? this.vicomnlpservice.buscarEventos(text)
+        ? this.vicomnlpservice.buscarEventos(text, fecha)
         // or the observable of empty heroes if no search term
         : Observable.of<Event[]>([]))
       .catch(error => {
@@ -99,6 +110,22 @@ export class VicomnlpComponent implements OnInit {
         return Observable.of<Event[]>([]);
       });
     this.resultObservable2.subscribe(x => this.searchResult2 = x);
+
+    this.resultObservable3 = this.currentSearchSubject3
+      .debounceTime(300)        // wait for 300ms pause in events
+      .distinctUntilChanged()   // ignore if next search term is same as previous
+      // le puedo pasar 3 parametros aqui??? cAAAH
+      .switchMap(text => text   // switch to new observable each time
+        // return the http search observable
+        ? this.vicomnlpservice.findDate(text)
+        // or the observable of empty heroes if no search term
+        : Observable.of<Fechas>())
+      .catch(error => {
+        // TODO: real error handling
+        console.log(error);
+        return Observable.of<Fechas>();
+      });
+    this.resultObservable3.subscribe(x => this.searchResult3 = x);
 
 
 

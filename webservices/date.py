@@ -45,18 +45,22 @@ def create_task():
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
+
+
 def parse_file(document):
 #    text = "Hola me ll Naiara Perez y vivo en Donostia. Naiara Perez es muy majo. Quiero ir a un Concierto a Barcelona pasado mañana."
     #print result
-    with open('../TemporalAnalysis/Fechas.json') as json_data:
-        d = json.load(json_data)
-        print(d)
-#    data = {"dias que sean martes y 13 en los siguientes 10 years": {'timeUnit':'year','specificWeekdays':['martes'],'specificDays': [13],'specifiedEnd':10}}
+    #with open('../TemporalAnalysis/Fechas.json') as json_data:
+    #    d = json.load(json_data)
+    #    print(d)
+    #data = {"dias que sean martes y 13 en los siguientes 10 years": {'timeUnit':'year','specificWeekdays':['martes'],'specificDays': [13],'specifiedEnd':10}}
 
 #    pprint(data)
-    text=parseJsonInput(d[document])
-    print data.keys()
-    return text
+    #text=parseJsonInput(data)
+    #print data.keys()
+    salida = {'fechas':'24/3/2017'}
+    return json.dumps(salida)
+
     #return result
 
 """Some functions to filter from NLP to a datetime span. Incredibly hardcoded, but hopefully, useful."""

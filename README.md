@@ -1,7 +1,9 @@
 Prototipo Vicomtech-IK4
 =======================
 
-# Dependencias programario NLP
+
+
+# Dependencias NLP
 
 + ixa-pipes-1.1.1
 
