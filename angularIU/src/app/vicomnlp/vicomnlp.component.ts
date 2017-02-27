@@ -35,13 +35,22 @@ export class VicomnlpComponent implements OnInit {
   // Esta es la variable que recogerá los resultados de los Observables
   private searchResult2: Event[] = [];
 
+  output_get:Event[];
+  output_post:Nerc[];
+  busqueda:Nerc[];
+  evento:string;
+  sitio:string;
+  output_time:string;
+  fecha:string;
+  constructor(private vicomnlpservice: VicomnlpService) {
 
 
-  constructor(private vicomnlpservice: VicomnlpService) {}
+  }
 //  constructor() {}
 
   funcionAuxiliar (resultatBusqueda:string){
     this.currentSearchSubject.next(resultatBusqueda);
+  //  this.convertirFecha("hoy");
     let entradaBuscador:Nerc;
     for (let entry of this.searchResult) {
       entradaBuscador=entry;
@@ -50,13 +59,12 @@ export class VicomnlpComponent implements OnInit {
       }
   }
 
-  output_get:Event[];
-  output_post:Nerc[];
-  busqueda:Nerc[];
-  evento:string;
-  sitio:string;
 
+  convertirFecha(fecha:string){
+    let output_time:string;
+    this.vicomnlpservice.findDate(fecha).subscribe(x=>this.output_time=x);
 
+  }
 
 
 

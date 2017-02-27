@@ -535,7 +535,7 @@ def testFunction(debug=False):
 if __name__ == '__main__':
     #testFunction()
 
-    app.run(host='0.0.0.0',port=5067, debug=True)
+    app.run(host='0.0.0.0',port=5063, debug=True)
     #with open('Dates.json','rb') as data_file:
     #    data = json.load(data_file)
 #    data = {"el mes que viene": {"specificWeekdays": None, "specifiedEnd": None "specifiedBeginning": None, "timeUnit": "month", "specificDays": None, "specificMonths": None,"specialDay": "siguientemes"}}

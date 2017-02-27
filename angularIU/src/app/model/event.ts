@@ -1,10 +1,11 @@
 export class Event{
   municipality:string;
-  endDate:string;
-  eventType:string;
+  endDate:Date;
+  eventType:Date;
   id:string;
   latitude:number;
   longitude:number;
-  startDate:string;
+  startDate:Date;
   eventName:string;
+  urlAmiganle:string;
 }
