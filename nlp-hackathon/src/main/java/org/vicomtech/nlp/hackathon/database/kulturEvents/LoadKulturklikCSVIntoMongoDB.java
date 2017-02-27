@@ -52,21 +52,22 @@ public class LoadKulturklikCSVIntoMongoDB {
 	
 	private static Document parseLineToDocument(String line){
 		try{
-		String[]parts=line.split(";");
-		Document document=new Document();
-		document.put("eventName", parts[0]);
-		document.put("startDate", DATE_FORMAT.parse(parts[4]));
-		document.put("endDate", DATE_FORMAT.parse(parts[2]));
-		document.put("eventType", parts[12]);
-		document.put("municipality", parts[21]);
-		Map<String,Double> loc = Maps.newHashMap();
-		loc.put("lat", Double.parseDouble(parts[14]));
-		loc.put("long", Double.parseDouble(parts[15]));
-		document.put("geolocation",loc); //new Double[]{Double.parseDouble(parts[14]),Double.parseDouble(parts[15])});
-		document.put("latitude",Double.parseDouble(parts[14]));
-		document.put("longitude",Double.parseDouble(parts[15]));
-		
-		return document;
+			String[]parts=line.split(";");
+			Document document=new Document();
+			document.put("eventName", parts[0]);
+			document.put("startDate", DATE_FORMAT.parse(parts[4]));
+			document.put("endDate", DATE_FORMAT.parse(parts[2]));
+			document.put("eventType", parts[12]);
+			document.put("municipality", parts[21]);
+			document.put("urlAmigable", parts[23]);
+			Map<String,Double> loc = Maps.newHashMap();
+			loc.put("lat", Double.parseDouble(parts[14]));
+			loc.put("long", Double.parseDouble(parts[15]));
+			document.put("geolocation",loc); //new Double[]{Double.parseDouble(parts[14]),Double.parseDouble(parts[15])});
+			document.put("latitude",Double.parseDouble(parts[14]));
+			document.put("longitude",Double.parseDouble(parts[15]));
+			
+			return document;
 		}catch(Exception e){
 			throw new RuntimeException(e);
 		}

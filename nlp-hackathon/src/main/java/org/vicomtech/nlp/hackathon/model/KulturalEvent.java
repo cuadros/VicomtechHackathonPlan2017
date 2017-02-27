@@ -26,6 +26,7 @@ public class KulturalEvent {
 	// private Geolocation geolocation;
 	private double latitude;
 	private double longitude;
+	private String urlAmigable;
 
 	public String getId() {
 		return id;
@@ -91,6 +92,14 @@ public class KulturalEvent {
 		this.eventType = eventType;
 	}
 
+	public String getUrlAmigable() {
+		return urlAmigable;
+	}
+
+	public void setUrlAmigable(String urlAmigable) {
+		this.urlAmigable = urlAmigable;
+	}
+
 	@Override
 	public String toString() {
 		return "KulturalEvent [id=" + id + ", eventName=" + eventName + ", startDate=" + startDate + ", endDate="
@@ -131,7 +140,6 @@ public class KulturalEvent {
 	//
 	//
 	// }
-
 
 }
 
