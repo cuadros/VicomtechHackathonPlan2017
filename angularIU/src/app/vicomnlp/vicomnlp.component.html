@@ -8,11 +8,11 @@
 <!--<input style="width:70%" class="form-control" #search (keyup)="currentSearchSubject.next(search.value)"
  />-->
 
-<!--Fecha={{output_time}}-->
+<!--Fecha={{output_time}}
 result:{{searchResult3}}
 {{output_time}}
 {{output_time2| json}}
-
+-->
 <input style="width:70%" class="form-control" #search (keyup)="funcionAuxiliar(search.value)" />
   <ul class="list-group">
 
@@ -24,7 +24,7 @@ result:{{searchResult3}}
     <h2 *ngIf="searchResult2.length>0">Eventos programados</h2>
       <li class="list-group-item" *ngFor="let matchingEvent2 of searchResult2">
 
-        <span class="label label-success">{{matchingEvent2.municipality}}</span>&nbsp;<span class="label label-primary">{{matchingEvent2.eventType}}</span>&nbsp;<span class="label label-warning">{{matchingEvent2.startDate|date}}</span>&nbsp;&nbsp;<a href={{matchingEvent2.urlAmigable}}>link</a>
+        <span class="label label-success">{{matchingEvent2.municipality}}</span>&nbsp;<span class="label label-primary">{{matchingEvent2.eventType}}</span>&nbsp;<span class="label label-warning">{{matchingEvent2.startDate|date}}</span>&nbsp;&nbsp;{{matchingEvent2.eventName}}&nbsp;&nbsp;<a href={{matchingEvent2.urlAmigable}}>link</a>
       </li>
 
 

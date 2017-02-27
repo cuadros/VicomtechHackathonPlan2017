@@ -4,7 +4,11 @@ import {Event} from '../model/event'
 import {Nerc} from '../model/nerc'
 import {Fechas} from '../model/fechas'
 import {Pipe, PipeTransform} from "@angular/core";
-
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -16,12 +20,27 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
+/*@NgModule({
+  declarations: [
+    VicomnlpComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCakT_nyrSoS52r7Qw8sUWRiozH9s6Ej08'
+    })
+  ],
+  providers: [VicomnlpService],
+
+})*/
 
 @Component({
   selector: 'app-vicomnlp',
   templateUrl: './vicomnlp.component.html',
   styleUrls: ['./vicomnlp.component.css'],
-  providers: [VicomnlpService]
+  providers: [VicomnlpService, AgmCoreModule]
 
 })
 export class VicomnlpComponent implements OnInit {
@@ -51,8 +70,10 @@ export class VicomnlpComponent implements OnInit {
   sitio:string;
   output_time:string;
   output_time2:Fechas;
-fecha:string;
+  fecha:string;
 
+  lat: number =  43.292239;
+  lng: number =  -1.985692
 
   constructor(private vicomnlpservice: VicomnlpService) {
 
@@ -101,7 +122,7 @@ fecha:string;
       // le puedo pasar 3 parametros aqui??? cAAAH
       .switchMap(text => text   // switch to new observable each time
         // return the http search observable
-        ? this.vicomnlpservice.buscarEventos(text, fecha)
+        ? this.vicomnlpservice.buscarEventos(text, this.fecha)
         // or the observable of empty heroes if no search term
         : Observable.of<Event[]>([]))
       .catch(error => {

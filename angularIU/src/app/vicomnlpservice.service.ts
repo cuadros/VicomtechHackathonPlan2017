@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 
+
 import {Event} from './model/event'
 import {Nerc} from './model/nerc'
 import {Fechas} from './model/fechas'
@@ -39,7 +40,7 @@ export class VicomnlpService {
       let evento:string;
       evento=null; sitio=null;
       let busqueda:string;
-      let fecha="24/4/2017";
+      let fecha="24/3/2017";
 
       if (entradaEvento.eventvicom){
         evento=entradaEvento.eventvicom;
@@ -53,8 +54,13 @@ export class VicomnlpService {
       }
 
       if (entradaEvento.vicomdate){
-        if (busqueda) {busqueda=busqueda+"&date="+fecha;}
-        else{busqueda="date="+fecha}
+
+        if (busqueda)
+          {busqueda=busqueda+"&date="+fecha;
+          console.log("Pizzzzzzzaaaaa "+fechainicio);
+        }
+        else
+          {busqueda="date="+fecha}
     }
       console.log(busqueda);
       return this.http.get(`${this.path_analyze_get}/?${busqueda}`).map((r: Response) => r.json() as Event[]);
