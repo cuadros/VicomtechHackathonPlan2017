@@ -56,7 +56,8 @@ def parse_file(document):
 ########################################################################################################################
 ####################################### IXA PIPES PATHS TO BE CONFIGURED!! #############################################
 
-IXA_HOME = '/Users/nuriona/Documents/Montse/vicomnlphackathonplan/ixa-pipes-1.1.1'
+#IXA_HOME = '/Users/nuriona/Documents/Montse/vicomnlphackathonplan/ixa-pipes-1.1.1'
+IXA_HOME = '/home/VICOMTECH/mcuadros/VicomtechHackathonPlan2017/ixa-pipes-1.1.1'
 
 TOK_PORT = 5001
 POS_PORT = 5002

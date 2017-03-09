@@ -45,20 +45,29 @@ def create_task():
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
+data={"dos semanas a partir de abril": {"specificWeekdays": None, "specifiedEnd": 2, "specifiedBeginning": "abril", "timeUnit": "week", "specificDays": None, "specificMonths": None}, "del dia 15 al 2 ": {"specificWeekdays": None, "specifiedEnd": 2, "specifiedBeginning": 15, "timeUnit": "day", "specificDays": None, "specificMonths": None},"que conciertos teneis en verano ": {"specificWeekdays": None, "specifiedEnd": "septiembre", "specifiedBeginning": "junio", "timeUnit": "day", "specificDays": None, "specificMonths": None}, "hoy": {"specificWeekdays": None, "specifiedEnd": 0, "specifiedBeginning": None, "timeUnit": "day", "specificDays": None, "specificMonths": None},"mañana": {"specificWeekdays": None, "specifiedEnd": None, "specifiedBeginning": None, "timeUnit": "day", "specificDays": None, "specificMonths": None,'specialDay': 'manana'}, "pasado manana": {"specificWeekdays": None, "specifiedEnd": None, "specifiedBeginning": None, "timeUnit": "day", "specificDays": None, "specificMonths": None,'specialDay': 'pasadomanana'}, "verano": {"specificWeekdays": None, "specifiedEnd": "septiembre", "specifiedBeginning": "junio", "timeUnit": "month", "specificDays": None, "specificMonths": ["junio","agosto"],'specialDay': None},"los tres siguientes meses despues de junio": {"specificWeekdays": None, "specifiedEnd": 3, "specifiedBeginning": "junio", "timeUnit": "month", "specificDays": None, "specificMonths": None,'specialDay': None},"los tres siguientes dias despues de junio": {"specificWeekdays": None, "specifiedEnd": 3, "specifiedBeginning": "julio", "timeUnit": "day", "specificDays": None, "specificMonths": None,'specialDay': None}, "el mes que viene": {"specificWeekdays": None, "specifiedEnd": 1, "specifiedBeginning": None, "timeUnit": "month", "specificDays": None, "specificMonths": None,'specialDay': "siguientemes"},"siguiente mes": {'specialDay': 'siguientemes'}, "los lunes siguiente mes": {'specialDay': 'siguientemes','specificWeekdays': ['lunes']}, "el 27 del siguiente mes": {'specialDay': 'siguientemes','specificDays': [27]}, "el 27, 28 y 29 del siguiente mes": {'specialDay': 'siguientemes','specificDays': [27,28,29]}, "dias que sean martes y 13 en los siguientes 10 years": {'timeUnit':'year','specificWeekdays':['martes'],'specificDays': [13],'specifiedEnd':10}}
 
 
 def parse_file(document):
 #    text = "Hola me ll Naiara Perez y vivo en Donostia. Naiara Perez es muy majo. Quiero ir a un Concierto a Barcelona pasado mañana."
-    #print result
+    print document
     #with open('../TemporalAnalysis/Fechas.json') as json_data:
     #    d = json.load(json_data)
     #    print(d)
     #data = {"dias que sean martes y 13 en los siguientes 10 years": {'timeUnit':'year','specificWeekdays':['martes'],'specificDays': [13],'specifiedEnd':10}}
 
-#    pprint(data)
-    #text=parseJsonInput(data)
-    #print data.keys()
-    salida = {'fechas':'24/3/2017'}
+    if (data[document]):
+        pprint(data[document])
+        text=parseJsonInput(data[document])
+        print data.keys()
+        print text
+    #salida = {'fechas':'24/3/2017'}
+    else:
+        text=""
+
+    salida={}
+    salida['fechas']=text
+
     return json.dumps(salida)
 
     #return result
@@ -468,39 +477,41 @@ def outputToString(outputTimespan):
 
 def parseJsonInput(inputJson):
     """Parses a Json and returns the set of possible dates in a concatenated txt"""
-    for phrase in inputJson.keys():
-        phrase_dict = inputJson[phrase]
-        if 'specificWeekdays' in phrase_dict.keys():
-            specificWeekdays = phrase_dict['specificWeekdays']
-        else:
-            specificWeekdays = None
-        if 'timeUnit' in phrase_dict.keys():
-            timeUnit = phrase_dict['timeUnit']
-        else:
-            timeUnit = 'day'
-        if 'specifiedBeginning' in phrase_dict.keys():
-            specifiedBeginning = phrase_dict['specifiedBeginning']
-        else:
-            specifiedBeginning = None
+    #for phrase in inputJson.keys():
+    #phrase_dict = inputJson[phrase]
+    phrase_dict = inputJson
 
-        if 'specifiedEnd' in phrase_dict.keys():
-            specifiedEnd = phrase_dict['specifiedEnd']
-        else:
-            specifiedEnd = None
+    if 'specificWeekdays' in phrase_dict.keys():
+        specificWeekdays = phrase_dict['specificWeekdays']
+    else:
+        specificWeekdays = None
+    if 'timeUnit' in phrase_dict.keys():
+        timeUnit = phrase_dict['timeUnit']
+    else:
+        timeUnit = 'day'
+    if 'specifiedBeginning' in phrase_dict.keys():
+        specifiedBeginning = phrase_dict['specifiedBeginning']
+    else:
+        specifiedBeginning = None
 
-        if 'specificDays' in phrase_dict.keys():
-            specificDays = phrase_dict['specificDays']
-        else:
-            specificDays = None
+    if 'specifiedEnd' in phrase_dict.keys():
+        specifiedEnd = phrase_dict['specifiedEnd']
+    else:
+        specifiedEnd = None
 
-        if 'specificMonths' in phrase_dict.keys():
-            specificMonths = phrase_dict['specificMonths']
-        else:
-            specificMonths = None
-        if 'specialDay' in phrase_dict.keys():
-            specialDay = phrase_dict['specialDay']
-        else:
-            specialDay = None
+    if 'specificDays' in phrase_dict.keys():
+        specificDays = phrase_dict['specificDays']
+    else:
+        specificDays = None
+
+    if 'specificMonths' in phrase_dict.keys():
+        specificMonths = phrase_dict['specificMonths']
+    else:
+        specificMonths = None
+    if 'specialDay' in phrase_dict.keys():
+        specialDay = phrase_dict['specialDay']
+    else:
+        specialDay = None
 
     outputTimespan = date_to_span(timeUnit=timeUnit, specificDays=specificDays, specificWeekdays=specificWeekdays , specificMonths=specificMonths ,
             specifiedBeginning=specifiedBeginning , specifiedEnd=specifiedEnd , specialDay = specialDay)

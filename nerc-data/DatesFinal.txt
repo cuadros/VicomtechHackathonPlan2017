@@ -1,8 +1,0 @@
-pasado mañana	VICOMdate
-la semana que viene	VICOMdate
-el mes que viene	VICOMdate
-el año que viene	VICOMdate
-el próximo mes	VICOMdate
-en dos días	VICOMdate
-montse VICOMdate
-cuadros VICOMdate

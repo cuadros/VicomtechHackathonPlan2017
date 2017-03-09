@@ -4,7 +4,7 @@ import {Event} from '../model/event'
 import {Nerc} from '../model/nerc'
 import {Fechas} from '../model/fechas'
 import {Pipe, PipeTransform} from "@angular/core";
-import { AgmCoreModule } from 'angular2-google-maps/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -40,7 +40,7 @@ import 'rxjs/add/observable/of';
   selector: 'app-vicomnlp',
   templateUrl: './vicomnlp.component.html',
   styleUrls: ['./vicomnlp.component.css'],
-  providers: [VicomnlpService, AgmCoreModule]
+  providers: [VicomnlpService]
 
 })
 export class VicomnlpComponent implements OnInit {
@@ -69,7 +69,7 @@ export class VicomnlpComponent implements OnInit {
   evento:string;
   sitio:string;
   output_time:string;
-  output_time2:Fechas;
+  private output_time2:Fechas;
   fecha:string;
 
   lat: number =  43.292239;
@@ -91,8 +91,9 @@ export class VicomnlpComponent implements OnInit {
       if (entradaBuscador.vicomdate){
         this.output_time="encontrada fecha"
         this.currentSearchSubject3.next(entradaBuscador.vicomdate)
-        this.output_time2=this.searchResult3;
-
+        if (this.searchResult3){
+          this.fecha=this.searchResult3.fechas;
+        }
 
       }
       }
