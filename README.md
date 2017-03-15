@@ -57,6 +57,13 @@ python dates.py
 
 ```
 
+Lanzar la interfaz grafica:
+
+```
+cd angularIU
+ng serve
+```
+
 
 # Información de contacto
 
